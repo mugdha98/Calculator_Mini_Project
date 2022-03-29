@@ -4,12 +4,12 @@
   tasks:
     - name: Pull image
       docker_image:
-        name: mugdha/calculator
+        name: mugdha98/calculator
         source: pull
-    - name: deploy docker container
-      docker_container:
-        image: mugdha/calculator
-        name: calculator_container
-        state: started
-        ports:
-          - "8080:80"
+#     - name: deploy docker container
+#       docker_container:
+#         image: mugdha/calculator
+#         name: calculator_container
+#         state: started
+#         ports:
+#           - "8080:80"
