@@ -1,2 +1,2 @@
 [ubuntu18]
-172.16.145.18 ansible_user=mugdha
+192.168.152.213 ansible_user=mugdha
