@@ -2,10 +2,13 @@ package calculator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static java.lang.Math.sqrt;
 
 public class Calculator {
+    private static final Logger logger = LogManager.getLogger(Calculator.class);
     public Calculator() {
     }
 
@@ -68,31 +71,51 @@ public class Calculator {
 
 
     public double SQRT(double number1) {
+        logger.info("[SQ ROOT] - " + number1);
         System.out.println("Square Root of " + number1);
         double result = sqrt(number1);
         //System.out.println("RESULT = " + result);
+        logger.info("[RESULT - SQ ROOT] - " + result);
         return result;
     }
     public double fact(double number1) {
+        logger.info("[FACTORIAL] - " + number1);
         System.out.println("Factorial of " + number1);
         double result =1;
         for(double i=number1;i>1;i--){
             result=result*i;
         }
         //System.out.println("RESULT = " + result);
+        logger.info("[RESULT - FACTORIAL] - " + result);
         return result;
     }
     public double log(double number1) {
+        logger.info("[NATURAL LOG] - " + number1);
         System.out.println("Natural logarithm (base е) - ln(x) of " + number1);
-        double result =Math.log(number1);
+        double result=0;
+        try {
+
+            if (number1 <0 ) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN 0.0/0.0");
+            }
+            else {
+                result = Math.log(number1);
+            }
+        } catch (ArithmeticException error) {
+            System.out.println("[EXCEPTION - LOG] - Cannot find log of negative numbers " + error.getLocalizedMessage());
+        }
         //System.out.println("RESULT = " + result);
+        logger.info("[RESULT - NATURAL LOG] - " + result);
         return result;
     }
 
     public double power(double number1, double number2) {
+        logger.info("[POWER - " + number1 + " RAISED TO] " + number2);
         System.out.println("Power of " + number1 + ", " + number2);
         double result = Math.pow(number1,number2);
         //System.out.println("RESULT = " + result);
+        logger.info("[RESULT - POWER] - " + result);
         return result;
     }
 }
