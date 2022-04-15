@@ -2,14 +2,30 @@
 - name: Pull docker image of Calculator
   hosts: all
   tasks:
-    - name: Pull image
-      docker_image:
-        name: mugdha98/calculator
-        source: pull
-#     - name: deploy docker container
-#       docker_container:
-#         image: mugdha/calculator
-#         name: calculator_container
-#         state: started
-#         ports:
-#           - "8080:80"
+
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+        
+    - name: pull docker image
+      shell: docker pull mugdha98/calculator
+      
+    - name: running container
+      shell: docker run -it -d mugdha/calculator
+
+# ---
+# - name: Pull docker image of Calculator
+#   hosts: all
+#   tasks:
+#     - name: Pull image
+#       docker_image:
+#         name: mugdha98/calculator
+#         source: pull
+# #     - name: deploy docker container
+# #       docker_container:
+# #         image: mugdha/calculator
+# #         name: calculator_container
+# #         state: started
+# #         ports:
+# #           - "8080:80"
