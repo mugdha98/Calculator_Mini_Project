@@ -12,7 +12,7 @@
       shell: docker pull mugdha98/calculator
       
     - name: running container
-      shell: docker run -it -d mugdha/calculator
+      shell: docker run -it -d mugdha98/calculator
 
 # ---
 # - name: Pull docker image of Calculator
